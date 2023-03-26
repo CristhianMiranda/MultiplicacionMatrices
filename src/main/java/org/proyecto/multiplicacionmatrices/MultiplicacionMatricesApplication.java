@@ -23,7 +23,7 @@ public class MultiplicacionMatricesApplication {
 
 
 
-        while(i<=12) {
+        while(i<=16) {
 
             // Tamaño de las matrices
             int size = tamano*i*2 ;
@@ -41,7 +41,7 @@ public class MultiplicacionMatricesApplication {
 
             long startTime, endTime;
 
-            System.out.println(i+" / "+ size);
+            System.out.println("\n\nCaso"+i+": / Tamaño:"+ size);
 
             startTime = System.nanoTime();
             Algoritmos.naivStandard(matrizA,matrizB,matrizC,size,size,size);
@@ -80,7 +80,7 @@ public class MultiplicacionMatricesApplication {
             sb.append("\n");
         }
         String matrizStr = sb.toString();
-        System.out.println(matrizStr);
+       // System.out.println(matrizStr);
         return matrizStr;
     }
 
@@ -95,9 +95,9 @@ public class MultiplicacionMatricesApplication {
             try {
                 // Crear un nuevo archivo
                 FileWriter writer = new FileWriter(file);
-                writer.write(matrizA);
+                writer.write("MatrizA:\n"+"{\n"+matrizA+"}\n"+"MatrizB:\n"+"{\n\n"+matrizB+"}\n");
                 writer.close();
-                System.out.println("El archivo ha sido creado");
+                //System.out.println("El archivo ha sido creado");
             } catch (IOException e) {
                 e.printStackTrace();
             }
