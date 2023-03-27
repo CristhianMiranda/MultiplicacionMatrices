@@ -10,30 +10,48 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.*;
 import javax.swing.JFrame;
 
 public class BarChartExample extends JFrame {
 
-    public BarChartExample() {
-        super("Diagrama de Barras de Promedio De TE(ns)");
+    public final int id;
+    public final double promedio;
+
+    public int getId() {
+        return id;
+    }
+
+    public double getPromedio() {
+        return promedio;
+    }
+
+
+
+
+
+    public BarChartExample(int id, double promedio){
+        super("Diagrama de Barras de Promedio de TE(ns)");
+        this.id = id;
+        this.promedio = promedio;
 
         CategoryDataset dataset = createDataset();
         JFreeChart chart = createChart(dataset);
 
         ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new Dimension(500, 350));
+        chartPanel.setPreferredSize(new Dimension(500, 500));
 
         setContentPane(chartPanel);
     }
+
+
 
     public static CategoryDataset createDataset() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         // Agregar los datos a la tabla
-        dataset.addValue(10, "Serie 1", "Categoría 1");
-        dataset.addValue(20, "Serie 2", "Categoría 2");
+        //dataset.addValue(promedio, "Serie 1", id+"");
+        dataset.addValue(25, "Serie 2", "Categoria 4");
         dataset.addValue(30, "Serie 3", "Categoría 3");
 
         return dataset;
@@ -41,7 +59,7 @@ public class BarChartExample extends JFrame {
 
     public static JFreeChart createChart(CategoryDataset dataset) {
         JFreeChart chart = ChartFactory.createBarChart(
-                "Tiempo de ejecucion", // Título del gráfico
+                "Tiempo promedio de ejecucion", // Título del gráfico
                 "Eje X",              // Etiqueta del eje X
                 "Eje Y",              // Etiqueta del eje Y
                 dataset,              // Datos para el gráfico
@@ -57,10 +75,14 @@ public class BarChartExample extends JFrame {
         return chart;
     }
 
+
     public static void main(String[] args) {
-        BarChartExample demo = new BarChartExample();
+
+        BarChartExample demo = new BarChartExample(1,32.4);
         demo.pack();
         demo.setVisible(true);
     }
+
+
 }
 

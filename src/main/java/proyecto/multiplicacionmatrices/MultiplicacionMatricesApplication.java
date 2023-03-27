@@ -1,6 +1,7 @@
 package proyecto.multiplicacionmatrices;
 
 import proyecto.multiplicacionmatrices.clases.Algoritmos;
+import proyecto.multiplicacionmatrices.clases.BarChartExample;
 import proyecto.multiplicacionmatrices.clases.Excel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -44,7 +45,8 @@ public class MultiplicacionMatricesApplication {
 
                 // Cálculo del tiempo promedio
                 double averageTime = calculateAverageExecutionTime(j);
-                //Excel.escribirExcel(j,i,);
+
+                guardarPromedioTiempoEjecucion(j,averageTime);
 
                 Excel.escribirEnHojaEspecifica(String.valueOf(averageTime),j-1);
 
@@ -59,6 +61,15 @@ public class MultiplicacionMatricesApplication {
 
         eliminarArchivo();
 
+    }
+
+    private static void guardarPromedioTiempoEjecucion(int id,double averageTime) {
+        try {
+            Scanner scanner = new Scanner(new File("execution_times"+id+".txt"));
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -288,6 +299,7 @@ public class MultiplicacionMatricesApplication {
     public static double calculateAverageExecutionTime(int i) {
         double sum = 0;
         int count = 0;
+        //BarChartExample barChartExample;
         try {
             Scanner scanner = new Scanner(new File("execution_times"+i+".txt"));
             scanner.useDelimiter(",");
