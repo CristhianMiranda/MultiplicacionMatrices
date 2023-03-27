@@ -1,6 +1,7 @@
 package org.proyecto.multiplicacionmatrices;
 
 import org.proyecto.multiplicacionmatrices.clases.Algoritmos;
+import org.proyecto.multiplicacionmatrices.clases.Excel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -39,14 +40,8 @@ public class MultiplicacionMatricesApplication {
 
             double[][] matrizC = new double[size][size];
 
-            long startTime, endTime;
-
             System.out.println("\n\nCaso"+i+": / Tamaño:"+ size);
 
-            startTime = System.nanoTime();
-            Algoritmos.naivStandard(matrizA,matrizB,matrizC,size,size,size);
-            endTime = System.nanoTime();
-            System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (NaivStandard)");
 
 
 
@@ -54,8 +49,20 @@ public class MultiplicacionMatricesApplication {
             i++;
         }
     }
+    //int id,int caso,String tamano,String tiempoRespuesta
+    public static String tiempoRespuesta(double[][] matrizA,double[][] matrizB,double[][] matrizC,int id,int caso,String tamano,int... sizeUno)
+    {
+        long startTime, endTime;
+        int size = sizeUno[0];
 
 
+        startTime = System.nanoTime();
+        Algoritmos.naivStandard(matrizA,matrizB,matrizC,size,size,size);
+        endTime = System.nanoTime();
+        System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (NaivStandard)");
+        Excel.escribirExcel(id,caso,tamano,endTime+"");//int id,int caso,String tamano,String tiempoRespuesta
+        return "";
+    }
     public static int[][] convertirMatrizDoubleAEntera(double[][] matrizDouble) {
         int filas = matrizDouble.length;
         int columnas = matrizDouble[0].length;
@@ -80,7 +87,6 @@ public class MultiplicacionMatricesApplication {
             sb.append("\n");
         }
         String matrizStr = sb.toString();
-       // System.out.println(matrizStr);
         return matrizStr;
     }
 
@@ -95,14 +101,14 @@ public class MultiplicacionMatricesApplication {
             try {
                 // Crear un nuevo archivo
                 FileWriter writer = new FileWriter(file);
-                writer.write("MatrizA:\n"+"{\n"+matrizA+"}\n"+"MatrizB:\n"+"{\n\n"+matrizB+"}\n");
+                writer.write("MatrizA:\n"+"{\n"+matrizA+"}"+"\n"+"\n"+"MatrizB:\n"+"{\n"+matrizB+"}\n");
                 writer.close();
                 //System.out.println("El archivo ha sido creado");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("El archivo ya existe");
+            System.out.println("El archivo no existe");
         }
     }
 

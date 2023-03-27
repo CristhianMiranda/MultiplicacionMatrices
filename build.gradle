@@ -17,6 +17,11 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation files("${rootDir}/lib/commons-collections4-4.1.jar")
+    implementation files("${rootDir}/lib/poi-3.16.jar")
+    implementation files("${rootDir}/lib/poi-ooxml-3.16.jar")
+    implementation files("${rootDir}/lib/poi-ooxml-schemas-3.16.jar")
+    implementation files("${rootDir}/lib/xmlbeans-2.6.0.jar")
 }
 
 tasks.named('test') {
