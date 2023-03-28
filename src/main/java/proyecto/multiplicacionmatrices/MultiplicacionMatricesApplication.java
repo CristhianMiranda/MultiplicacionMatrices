@@ -1,16 +1,13 @@
 package proyecto.multiplicacionmatrices;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.DefaultCategoryDataset;
+
+import javafx.stage.Stage;
 import proyecto.multiplicacionmatrices.clases.Algoritmos;
 import proyecto.multiplicacionmatrices.clases.BarChartExample;
 import proyecto.multiplicacionmatrices.clases.Excel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import proyecto.multiplicacionmatrices.clases.StatsTable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,16 +22,17 @@ public class MultiplicacionMatricesApplication extends JFrame {
 
         SpringApplication.run(MultiplicacionMatricesApplication.class, args);
         calculoTiempoEjecucionMultiplicacionMatrices();
+        //mostrarTablaDeEstadisticas();
+
     }
 
     public static void calculoTiempoEjecucionMultiplicacionMatrices() {
 
         int tamano = 1;
         eliminarArchivo();
+
         for (int i = 1; i <= 12; i++) {
-
             for (int j = 1; j <= 16; j++) {
-
                 // Tamaño de las matrices
                 int size = tamano * i * 2;
 
@@ -45,23 +43,18 @@ public class MultiplicacionMatricesApplication extends JFrame {
 
                 escribirArchivoTxt(matrizString(convertirMatrizDoubleAEntera(matrizA)), matrizString(convertirMatrizDoubleAEntera(matrizB)));
 
-
                 double[][] matrizC = new double[size][size];
 
                 if(j==1)
                 {System.out.println("\n\nCaso" + i + ": / Tamaño:" + size /*+ " / Algoritmo:" + j*/);}
 
-
                 tiempoRespuesta(matrizA, matrizB, matrizC, j, i, size);
-
                 // Cálculo del tiempo promedio
                 double averageTime = calculateAverageExecutionTime(j);
 
                 guardarPromedioTiempoEjecucion(j,i,averageTime);
 
                 Excel.escribirEnHojaEspecifica(String.valueOf(averageTime),j-1);
-
-
 
                 if(i==12)
                 {
@@ -75,7 +68,14 @@ public class MultiplicacionMatricesApplication extends JFrame {
         graficaBarras();
 
     }
+    /*
+    public static void mostrarTablaDeEstadisticas() {
+        Stage stage = new Stage();
+        StatsTable metodo = new StatsTable ();
+        metodo.main(new String[]{});
 
+    }
+*/
     private static void graficaBarras() {
         unify();
         double[] promedios = readNumbersFromFile("assets/promedio/promedios.txt");

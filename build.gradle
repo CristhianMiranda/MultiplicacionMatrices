@@ -6,7 +6,7 @@ plugins {
 }
 
 javafx {
-    version = "19.0.2"
+    version = "19.0.2.1"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
@@ -23,6 +23,7 @@ repositories {
 }
 
 dependencies {
+
     implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation files("${rootDir}/lib/excel/commons-collections4-4.1.jar")
@@ -48,6 +49,7 @@ dependencies {
     implementation 'org.openjfx:javafx:19.0.2.1'
     implementation 'org.openjfx:javafx-controls:19.0.2.1:win'
     implementation 'org.openjfx:javafx-fxml:19.0.2.1:win'
+
 
 }
 
