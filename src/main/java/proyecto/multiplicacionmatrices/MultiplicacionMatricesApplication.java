@@ -23,9 +23,11 @@ public class MultiplicacionMatricesApplication {
     public static void calculoTiempoEjecucionMultiplicacionMatrices() {
 
         int tamano = 1;
-
+        eliminarArchivo();
         for (int i = 1; i <= 12; i++) {
+
             for (int j = 1; j <= 16; j++) {
+
                 // Tamaño de las matrices
                 int size = tamano * i * 2;
 
@@ -46,10 +48,11 @@ public class MultiplicacionMatricesApplication {
                 // Cálculo del tiempo promedio
                 double averageTime = calculateAverageExecutionTime(j);
 
-                guardarPromedioTiempoEjecucion(j,averageTime);
+                guardarPromedioTiempoEjecucion(j,i,averageTime);
 
                 Excel.escribirEnHojaEspecifica(String.valueOf(averageTime),j-1);
 
+                if(i==12)
                 System.out.println("Tiempo promedio de ejecución: " + averageTime + " ns");
 
 
@@ -59,19 +62,9 @@ public class MultiplicacionMatricesApplication {
         }
 
 
-        eliminarArchivo();
+        //eliminarArchivo();
 
     }
-
-    private static void guardarPromedioTiempoEjecucion(int id,double averageTime) {
-        try {
-            Scanner scanner = new Scanner(new File("execution_times"+id+".txt"));
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 
     public static void tiempoRespuesta(double[][] matrizA, double[][] matrizB, double[][] matrizC, int id, int caso, int size) {
         long startTime, endTime;
@@ -238,6 +231,30 @@ public class MultiplicacionMatricesApplication {
     }
 
 
+    private static void guardarPromedioTiempoEjecucion(int id,int caso,double averageTime)  {
+        if(caso==12)
+        {
+            File file = new File("assets/promedio/promedio_times"+id+".txt");
+            if (!file.exists()) {
+                FileWriter writer = null;
+                try {
+                    writer = new FileWriter(file);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    writer.write(String.valueOf(averageTime));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
     public static void escribirArchivoTxt(String matrizA, String matrizB) {
         File file = new File("matricesGeneradas.txt");
 
@@ -288,7 +305,7 @@ public class MultiplicacionMatricesApplication {
     public static void acumularValores(long time,String id)
     {
         try {
-            FileWriter fileWriter = new FileWriter("execution_times"+id+".txt", true);
+            FileWriter fileWriter = new FileWriter("assets/datos/execution_times"+id+".txt", true);
             fileWriter.write(time + ",");
             fileWriter.close();
         } catch (IOException e) {
@@ -301,7 +318,7 @@ public class MultiplicacionMatricesApplication {
         int count = 0;
         //BarChartExample barChartExample;
         try {
-            Scanner scanner = new Scanner(new File("execution_times"+i+".txt"));
+            Scanner scanner = new Scanner(new File("assets/datos/execution_times"+i+".txt"));
             scanner.useDelimiter(",");
             while (scanner.hasNext()) {
                 sum += Double.parseDouble(scanner.next());
@@ -317,8 +334,10 @@ public class MultiplicacionMatricesApplication {
 
     public static void eliminarArchivo() {
         for (int i = 1; i <= 16; i++) {
-            File file = new File("execution_times" + i + ".txt");
+            File file = new File("assets/datos/execution_times" + i + ".txt");
+            File fileProm = new File("assets/promedio/promedio_times" + i + ".txt");
             if (file.exists()) {
+                fileProm.delete();
                 file.delete();
             }
         }

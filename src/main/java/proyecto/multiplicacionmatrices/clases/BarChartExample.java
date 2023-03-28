@@ -15,25 +15,14 @@ import javax.swing.JFrame;
 
 public class BarChartExample extends JFrame {
 
-    public final int id;
-    public final double promedio;
-
-    public int getId() {
-        return id;
-    }
-
-    public double getPromedio() {
-        return promedio;
-    }
 
 
 
 
 
-    public BarChartExample(int id, double promedio){
+
+    public BarChartExample(){
         super("Diagrama de Barras de Promedio de TE(ns)");
-        this.id = id;
-        this.promedio = promedio;
 
         CategoryDataset dataset = createDataset();
         JFreeChart chart = createChart(dataset);
@@ -78,7 +67,7 @@ public class BarChartExample extends JFrame {
 
     public static void main(String[] args) {
 
-        BarChartExample demo = new BarChartExample(1,32.4);
+        BarChartExample demo = new BarChartExample();
         demo.pack();
         demo.setVisible(true);
     }
