@@ -1,18 +1,25 @@
 package proyecto.multiplicacionmatrices;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 import proyecto.multiplicacionmatrices.clases.Algoritmos;
 import proyecto.multiplicacionmatrices.clases.BarChartExample;
 import proyecto.multiplicacionmatrices.clases.Excel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import proyecto.multiplicacionmatrices.clases.ExecutionTimeTracker;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
 
 @SpringBootApplication
-public class MultiplicacionMatricesApplication {
+public class MultiplicacionMatricesApplication extends JFrame {
 
     public static void main(String[] args) {
 
@@ -41,7 +48,9 @@ public class MultiplicacionMatricesApplication {
 
                 double[][] matrizC = new double[size][size];
 
-                System.out.println("\n\nCaso" + i + ": / Tamaño:" + size + " / Algoritmo:" + j);
+                if(j==1)
+                {System.out.println("\n\nCaso" + i + ": / Tamaño:" + size /*+ " / Algoritmo:" + j*/);}
+
 
                 tiempoRespuesta(matrizA, matrizB, matrizC, j, i, size);
 
@@ -52,19 +61,86 @@ public class MultiplicacionMatricesApplication {
 
                 Excel.escribirEnHojaEspecifica(String.valueOf(averageTime),j-1);
 
+
+
                 if(i==12)
-                System.out.println("Tiempo promedio de ejecución: " + averageTime + " ns");
+                {
+                    System.out.println("Tiempo promedio de ejecución: " + averageTime + " ns\n");
+                }
 
 
-                //Excel.leerDatosExcel();
 
             }
         }
-
-
-        //eliminarArchivo();
+        graficaBarras();
 
     }
+
+    private static void graficaBarras() {
+        unify();
+        double[] promedios = readNumbersFromFile("assets/promedio/promedios.txt");
+        BarChartExample barChartExample = new BarChartExample(new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16},promedios);
+    }
+
+    public static void unify() {
+        String folderPath = "assets/promedio/";
+        String outputFilePath = folderPath + "promedios.txt";
+
+        try (PrintWriter writer = new PrintWriter(outputFilePath)) {
+            for (int i = 1; i <= 16; i++) {
+                String inputFilePath = folderPath + "promedio_times" + i + ".txt";
+                File inputFile = new File(inputFilePath);
+
+                if (!inputFile.exists()) {
+                    continue;
+                }
+
+                try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        double value = Double.parseDouble(line.trim());
+                        writer.print(value + ",");
+                    }
+                } catch (IOException e) {
+                    System.err.println("Error reading file: " + inputFilePath);
+                    e.printStackTrace();
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error writing file: " + outputFilePath);
+            e.printStackTrace();
+        }
+    }
+
+    public static double[] readNumbersFromFile(String filename) {
+        try {
+            Scanner scanner = new Scanner(new File(filename));
+            scanner.useDelimiter(",");
+
+            // Contar la cantidad de números en el archivo
+            int count = 0;
+            while (scanner.hasNextDouble()) {
+                count++;
+                scanner.nextDouble();
+            }
+
+            // Crear el arreglo y volver a leer el archivo
+            double[] numbers = new double[count];
+            scanner = new Scanner(new File(filename));
+            scanner.useDelimiter(",");
+            for (int i = 0; i < count; i++) {
+                numbers[i] = scanner.nextDouble();
+            }
+
+            scanner.close();
+
+            return numbers;
+        } catch (FileNotFoundException e) {
+            System.out.println("Archivo no encontrado: " + filename);
+            return null;
+        }
+    }
+
 
     public static void tiempoRespuesta(double[][] matrizA, double[][] matrizB, double[][] matrizC, int id, int caso, int size) {
         long startTime, endTime;
@@ -334,9 +410,11 @@ public class MultiplicacionMatricesApplication {
 
     public static void eliminarArchivo() {
         for (int i = 1; i <= 16; i++) {
+            File filePromds = new File("assets/promedio/promedios.txt");
             File file = new File("assets/datos/execution_times" + i + ".txt");
             File fileProm = new File("assets/promedio/promedio_times" + i + ".txt");
             if (file.exists()) {
+                filePromds.delete();
                 fileProm.delete();
                 file.delete();
             }

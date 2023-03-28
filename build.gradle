@@ -2,7 +2,14 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '2.7.11-SNAPSHOT'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
 }
+
+javafx {
+    version = "19.0.2"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
 
 group = 'org.proyecto'
 version = '0.0.1-SNAPSHOT'
@@ -12,6 +19,7 @@ repositories {
     mavenCentral()
     maven { url 'https://repo.spring.io/milestone' }
     maven { url 'https://repo.spring.io/snapshot' }
+    maven { url 'https://maven.javafx.io' }
 }
 
 dependencies {
@@ -37,9 +45,22 @@ dependencies {
     implementation files("${rootDir}/lib/jfree/swtgraphics2d.jar")
 
 
-
+    implementation 'org.openjfx:javafx:19.0.2.1'
+    implementation 'org.openjfx:javafx-controls:19.0.2.1:win'
+    implementation 'org.openjfx:javafx-fxml:19.0.2.1:win'
 
 }
+
+
+
+/*
+module MultiplicacionMatrices {
+    requires javafx.controls;
+    requires javafx.fxml;
+    exports proyecto.multiplicacionmatrices.clases;
+}
+*/
+
 
 tasks.named('test') {
     useJUnitPlatform()
