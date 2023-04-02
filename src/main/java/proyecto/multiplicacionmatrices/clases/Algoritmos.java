@@ -2,92 +2,89 @@ package proyecto.multiplicacionmatrices.clases;
 
 import proyecto.multiplicacionmatrices.algoritmosimplementacion.*;
 import proyecto.multiplicacionmatrices.algoritmosinterfaces.*;
+import proyecto.multiplicacionmatrices.algoritmosinterfaces._11_III_3SequentialBlock;
 
 public class Algoritmos {
 
     public static void naivStandard(double[][] matrizA,double[][] matrizB,double[][] matrizC,int n, int p, int m){
-        NaivStandard naivStandard = new NaivStandardImpl();
+        _1_NaivStandard naivStandard = new _1_NaivStandardImpl();
         naivStandard.algoritmoNaivStandard(matrizA,matrizB,matrizC,n,p,m);
     }
 
     public static void naivOnArray(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P , int M){
-        NaivOnArray naivOnArray = new NaivOnArrayImpl();
+        _2_NaivOnArray naivOnArray = new _2_NaivOnArrayImpl();
         naivOnArray.algoritmoNaivOnArray(matrizA,matrizB,matrizC,N,P,M);
     }
 
     public static void naivKhan(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P, int M) {
-        NaivKahan naivKahan = new NaivKahanImpl();
+        _3_NaivKahan naivKahan = new _3_NaivKahanImpl();
         naivKahan.algoritmoNaivKhan(matrizA,matrizB,matrizC,N,P,M);
     }
 
     public static void naivLoopUnrollingTwo(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P, int M) {
-        NaivLoopUnrollingTwo naivLoopUnrollingTwo = new NaivLoopUnrollingTwoImpl();
+        _4_NaivLoopUnrollingTwo naivLoopUnrollingTwo = new _4_NaivLoopUnrollingTwoImpl();
         naivLoopUnrollingTwo.algoritmoNaivLoopUnrollingTwo(matrizA,matrizB,matrizC,N,P,M);
     }
 
     public static void naivLoopUnrollingThree(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P, int M) {
-        NaivLoopUnrollingThree naivLoopUnrollingThree = new NaivLoopUnrollingThreeImpl();
+        _5_NaivLoopUnrollingThree naivLoopUnrollingThree = new _5_NaivLoopUnrollingThreeImpl();
         naivLoopUnrollingThree.algoritmoNaivLoopUnrollingThree(matrizA,matrizB,matrizC,N,P,M);
     }
 
     public static void naivLoopUnrollingFour(double[][] A, double[][] B, double[][] Result, int N, int P, int M) {
-        NaivLoopUnrollingFour naivLoopUnrollingFour = new NaivLoopUnrollingFourImpl();
+        _6_NaivLoopUnrollingFour naivLoopUnrollingFour = new _6_NaivLoopUnrollingFourImpl();
         naivLoopUnrollingFour.algoritmoNaivLoopUnrollingFour(A,B,Result,N,P,M);
     }
 
     public static void winogradOriginal(double[][] A, double[][] B, double[][] Result, int N, int P, int M){
-        WinogradOriginal winogradOriginal = new WinogradOriginalImpl();
+        _7_WinogradOriginal winogradOriginal = new _7_WinogradOriginalImpl();
         winogradOriginal.algoritmoWinogradOriginal(A,B,Result,N,P,M);
     }
 
     public static void winogradScaled(double[][] A, double[][] B, double[][] Result, int N, int P, int M){
-        WinogradScaled winogradScaled = new WinogradScaledImpl();
+        _8_WinogradScaled winogradScaled = new _8_WinogradScaledImpl();
         winogradScaled.algoritmoWinogradScaled(A,B,Result,N,P,M);
     }
 
     public static void strassenNaiv(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P, int M) {
-        StrassenNaiv strassenNaiv = new StrassenNaivImpl();
+        _9_StrassenNaiv strassenNaiv = new _9_StrassenNaivImpl();
         strassenNaiv.algoritmoStrassenNaiv(matrizA,matrizB,matrizC,N,P,M);
     }
 
     public static void strassenWinograd(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P, int M) {
-        StrassenWinograd strassenWinograd = new StrassenWinogradImpl();
+        _10_StrassenWinograd strassenWinograd = new _10_StrassenWinogradImpl();
         strassenWinograd.algoritmoStrassenWinograd(matrizA,matrizB,matrizC,N,P,M);
     }
 
-    public static void v1_sequentialBlock(double[][]matrizA,double[][]matrizB,int size,int bsize){
-        V1_SequentialBlock v1sequentialBlock = new V1_SequentialBlockImpl();
-        v1sequentialBlock.algoritmoSequentialBlock(matrizA,matrizB,size,bsize);
+    public static void III_3SequentialBlockImpl(double[][]matrizA,double[][]matrizB,int size,int bsize){
+        _11_III_3SequentialBlock III3sequentialBlock = new proyecto.multiplicacionmatrices.algoritmosimplementacion._11_III_3SequentialBlockImpl();
+        III3sequentialBlock.algoritmoSequentialBlock(matrizA,matrizB,size,bsize);
     }
 
 
-    public static void v1_parallelBlock(double[][]matrizA,double[][]matrizB,int size,int bsize){
-        V1_ParallelBlock v1ParallelBlock = new V1_ParallelBlockImpl();
-        v1ParallelBlock.algoritmoParallelBlock(matrizA,matrizB,size,bsize);
+    public static void III_4ParallelBlockImpl(double[][]matrizA,double[][]matrizB,int size,int bsize){
+        _12_III_4ParallelBlock III3ParallelBlock = new _12_III_4ParallelBlockImpl();
+        III3ParallelBlock.algoritmoParallelBlock(matrizA,matrizB,size,bsize);
     }
 
-    public static void v2_sequentialBlock(double[][]matrizA,double[][]matrizB,int size,int bsize)
-    {
-        V2_SequentialBlock v2SequentialBlock = new V2_SequentialBlockImpl();
-        v2SequentialBlock.algoritmoSequentialBlockDos(matrizA,matrizB,size,bsize);
+    public static void IV_3SequentialBlockImpl(double[][]matrizA,double[][]matrizB,int size,int bsize) {
+        _13_IV_3SequentialBlock IV3SequentialBlock = new _13_IV_3SequentialBlockImpl();
+        IV3SequentialBlock.algoritmoSequentialBlockDos(matrizA,matrizB,size,bsize);
     }
 
-    public static void v2_parallelBlock (double[][]matrizA,double[][]matrizB,int size,int bsize)
-    {
-        V2_ParallelBlock v2ParallelBlock = new V2_ParallelBlockImpl();
-        v2ParallelBlock.algoritmoParallelBlockDos(matrizA,matrizB,size,bsize);
+    public static void IV_4ParallelBlockImpl (double[][]matrizA,double[][]matrizB,int size,int bsize) {
+        _14_IV_4ParallelBlock IV4ParallelBlock = new _14_IV_4ParallelBlockImpl();
+        IV4ParallelBlock.algoritmoParallelBlockDos(matrizA,matrizB,size,bsize);
     }
 
-    public static void v3_sequentialBlock(double[][]matrizA,double[][]matrizB,int size,int bsize)
-    {
-        V3_SequentialBlock v3SequentialBlock = new V3_SequentialBlockImpl();
+    public static void V_3SequentialBlockImpl(double[][]matrizA,double[][]matrizB,int size,int bsize) {
+        _15_V_3SequentialBlock v3SequentialBlock = new _15_V_3SequentialBlockImpl();
         v3SequentialBlock.algoritmoSequentialBlockTres(matrizA,matrizB,size,bsize);
     }
 
-    public static void v3_parallelBlock (double[][]matrizA,double[][]matrizB,int size,int bsize)
-    {
-        V3_ParallelBlock v3ParallelBlock = new V3_ParallelBlockImpl();
-        v3ParallelBlock.algoritmoParallelBlockTres(matrizA,matrizB,size,bsize);
+    public static void V_4ParallelBlockImpl (double[][]matrizA,double[][]matrizB,int size,int bsize) {
+        _16_V_4ParallelBlock v4ParallelBlock = new _16_V_4ParallelBlockImpl();
+        v4ParallelBlock.algoritmoParallelBlockTres(matrizA,matrizB,size,bsize);
     }
 
 }

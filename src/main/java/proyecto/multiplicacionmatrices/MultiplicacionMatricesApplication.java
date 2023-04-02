@@ -151,7 +151,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 startTime = System.nanoTime();
                 Algoritmos.naivStandard(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
-                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (NaivStandard)");
+                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (_1_NaivStandard)");
                 Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
@@ -160,7 +160,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 startTime = System.nanoTime();
                 Algoritmos.naivOnArray(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
-                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (NaivOnArray)");
+                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (_2_NaivOnArray)");
                 Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
@@ -176,7 +176,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 startTime = System.nanoTime();
                 Algoritmos.naivLoopUnrollingTwo(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
-                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (NaivLoopUnrollingTwo)");
+                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (_4_NaivLoopUnrollingTwo)");
                 Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
@@ -184,7 +184,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 startTime = System.nanoTime();
                 Algoritmos.naivLoopUnrollingThree(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
-                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (NaivLoopUnrollingThree)");
+                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (_5_NaivLoopUnrollingThree)");
                 Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
@@ -192,7 +192,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 startTime = System.nanoTime();
                 Algoritmos.naivLoopUnrollingFour(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
-                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (NaivLoopUnrollingFour)");
+                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (_6_NaivLoopUnrollingFour)");
                 Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
@@ -200,7 +200,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 startTime = System.nanoTime();
                 Algoritmos.winogradOriginal(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
-                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (WinogradOriginal)");
+                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (_7_WinogradOriginal)");
                 Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
@@ -208,7 +208,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 startTime = System.nanoTime();
                 Algoritmos.winogradScaled(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
-                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (WinogradScaled)");
+                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (_8_WinogradScaled)");
                 Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
@@ -216,7 +216,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 startTime = System.nanoTime();
                 Algoritmos.strassenNaiv(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
-                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (StrassenNaiv)");
+                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (_9_StrassenNaiv)");
                 Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
@@ -224,55 +224,55 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 startTime = System.nanoTime();
                 Algoritmos.strassenWinograd(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
-                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (StrassenWinograd)");
+                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (_10_StrassenWinograd)");
                 Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 11:
                 startTime = System.nanoTime();
-                Algoritmos.v1_sequentialBlock(matrizA, matrizB, size, bsize);
+                Algoritmos.III_3SequentialBlockImpl(matrizA, matrizB, size, bsize);
                 endTime = System.nanoTime();
-                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (V1_SequentialBlock)");
+                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (_11_III_3SequentialBlock)");
                 Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 12:
                 startTime = System.nanoTime();
-                Algoritmos.v1_parallelBlock(matrizA, matrizB, size, bsize);
+                Algoritmos.III_4ParallelBlockImpl(matrizA, matrizB, size, bsize);
                 endTime = System.nanoTime();
-                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (V1_ParallelBlock)");
+                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (_12_III_4ParallelBlock)");
                 Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 13:
                 startTime = System.nanoTime();
-                Algoritmos.v2_sequentialBlock(matrizA, matrizB, size, bsize);
+                Algoritmos.IV_3SequentialBlockImpl(matrizA, matrizB, size, bsize);
                 endTime = System.nanoTime();
-                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (V2_SequentialBlock)");
+                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (_13_IV_3SequentialBlock)");
                 Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 14:
                 startTime = System.nanoTime();
-                Algoritmos.v2_parallelBlock(matrizA, matrizB, size, bsize);
+                Algoritmos.IV_4ParallelBlockImpl(matrizA, matrizB, size, bsize);
                 endTime = System.nanoTime();
-                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (V2_ParallelBlock)");
+                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (_14_IV_4ParallelBlock)");
                 Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 15:
                 startTime = System.nanoTime();
-                Algoritmos.v3_sequentialBlock(matrizA, matrizB, size, bsize);
+                Algoritmos.V_3SequentialBlockImpl(matrizA, matrizB, size, bsize);
                 endTime = System.nanoTime();
-                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (V3_SequentialBlock)");
+                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (_15_V_3SequentialBlock)");
                 Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 16:
                 startTime = System.nanoTime();
-                Algoritmos.v3_parallelBlock(matrizA, matrizB, size, bsize);
+                Algoritmos.V_4ParallelBlockImpl(matrizA, matrizB, size, bsize);
                 endTime = System.nanoTime();
-                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (V3_ParallelBlock)");
+                System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (_16_V_4ParallelBlock)");
                 Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;

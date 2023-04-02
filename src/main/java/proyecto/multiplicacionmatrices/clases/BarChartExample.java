@@ -40,36 +40,36 @@ public class BarChartExample extends JFrame {
             switch (i)
             {
                 case 0:
-                    dataset.addValue(promedios[i], "Promedios", "NaivStandard");
+                    dataset.addValue(promedios[i], "Promedios", "_1_NaivStandard");
                     break;
 
                 case 1:
-                    dataset.addValue(promedios[i], "Promedios", "NaivOnArray");
+                    dataset.addValue(promedios[i], "Promedios", "_2_NaivOnArray");
                     break;
 
                 case 2:
-                    dataset.addValue(promedios[i], "Promedios", "NaivKahan");
+                    dataset.addValue(promedios[i], "Promedios", "_3_NaivKahan");
                     break;
                 case 3:
-                    dataset.addValue(promedios[i], "Promedios", "NaivLoopUnrollingTwo");
+                    dataset.addValue(promedios[i], "Promedios", "_4_NaivLoopUnrollingTwo");
                     break;
                 case 4:
-                    dataset.addValue(promedios[i], "Promedios", "NaivLoopUnrollingThree");
+                    dataset.addValue(promedios[i], "Promedios", "_5_NaivLoopUnrollingThree");
                     break;
                 case 5:
-                    dataset.addValue(promedios[i], "Promedios", "NaivLoopUnrollingFour");
+                    dataset.addValue(promedios[i], "Promedios", "_6_NaivLoopUnrollingFour");
                     break;
                 case 6:
-                    dataset.addValue(promedios[i], "Promedios", "WinogradOriginal");
+                    dataset.addValue(promedios[i], "Promedios", "_7_WinogradOriginal");
                     break;
                 case 7:
-                    dataset.addValue(promedios[i], "Promedios", "WinogradScaled");
+                    dataset.addValue(promedios[i], "Promedios", "_8_WinogradScaled");
                     break;
                 case 8:
-                    dataset.addValue(promedios[i], "Promedios", "StrassenNaiv");
+                    dataset.addValue(promedios[i], "Promedios", "_9_StrassenNaiv");
                     break;
                 case 9:
-                    dataset.addValue(promedios[i], "Promedios", "StrassenWinograd");
+                    dataset.addValue(promedios[i], "Promedios", "_10_StrassenWinograd");
                     break;
                 case 10:
                     dataset.addValue(promedios[i], "Promedios", "V1_Sequential block");

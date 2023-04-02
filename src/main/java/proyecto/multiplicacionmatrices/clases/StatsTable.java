@@ -191,45 +191,45 @@ public class StatsTable extends Application {
             switch (i-1)
             {
                     case 0:
-                        root.getChildren().addAll(new Label("NaivStandard"), table);
+                        root.getChildren().addAll(new Label("_1_NaivStandard"), table);
                         stage.setTitle("Algoritmo " + i);
                         break;
 
                     case 1:
-                        root.getChildren().addAll(new Label("NaivOnArray"), table);
+                        root.getChildren().addAll(new Label("_2_NaivOnArray"), table);
                         stage.setTitle("Algoritmo " + i);
                         break;
 
                     case 2:
-                        root.getChildren().addAll(new Label("NaivKahan"), table);
+                        root.getChildren().addAll(new Label("_3_NaivKahan"), table);
                         stage.setTitle("Algoritmo " + i);
                         break;
                     case 3:
-                        root.getChildren().addAll(new Label("NaivLoopUnrollingTwo"), table);
+                        root.getChildren().addAll(new Label("_4_NaivLoopUnrollingTwo"), table);
                         stage.setTitle("Algoritmo " + i);
                         break;
                     case 4:
-                        root.getChildren().addAll(new Label("NaivLoopUnrollingThree"), table);
+                        root.getChildren().addAll(new Label("_5_NaivLoopUnrollingThree"), table);
                         stage.setTitle("Algoritmo " + i);
                         break;
                     case 5:
-                        root.getChildren().addAll(new Label("NaivLoopUnrollingFour"), table);
+                        root.getChildren().addAll(new Label("_6_NaivLoopUnrollingFour"), table);
                         stage.setTitle("Algoritmo " + i);
                         break;
                     case 6:
-                        root.getChildren().addAll(new Label("WinogradOriginal"), table);
+                        root.getChildren().addAll(new Label("_7_WinogradOriginal"), table);
                         stage.setTitle("Algoritmo " + i);
                         break;
                     case 7:
-                        root.getChildren().addAll(new Label("WinogradScaled"), table);
+                        root.getChildren().addAll(new Label("_8_WinogradScaled"), table);
                         stage.setTitle("Algoritmo " + i);
                         break;
                     case 8:
-                        root.getChildren().addAll(new Label("StrassenNaiv"), table);
+                        root.getChildren().addAll(new Label("_9_StrassenNaiv"), table);
                         stage.setTitle("Algoritmo " + i);
                         break;
                     case 9:
-                        root.getChildren().addAll(new Label("StrassenWinograd"), table);
+                        root.getChildren().addAll(new Label("_10_StrassenWinograd"), table);
                         stage.setTitle("Algoritmo " + i);
                         break;
                     case 10:
