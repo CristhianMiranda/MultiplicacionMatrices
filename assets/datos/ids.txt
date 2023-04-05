@@ -1,0 +1,16 @@
+NaivLoopUnrollingThree
+NaivStandard
+NaivLoopUnrollingTwo
+NaivOnArray
+WinogradOriginal
+V2_Sequential block
+V1_Sequential block
+NaivKahan
+V1_Parallel Block
+V3_Sequential block
+WinogradScaled
+V3_Parallel Block
+StrassenNaiv
+StrassenWinograd
+NaivLoopUnrollingFour
+V2_Parallel Block

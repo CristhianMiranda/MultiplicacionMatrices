@@ -6,7 +6,7 @@ plugins {
 }
 
 javafx {
-    version = "19.0.2.1"
+    version = "11.0.2"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
@@ -46,23 +46,41 @@ dependencies {
     implementation files("${rootDir}/lib/jfree/swtgraphics2d.jar")
 
 
-    implementation 'org.openjfx:javafx:19.0.2.1'
-    implementation 'org.openjfx:javafx-controls:19.0.2.1:win'
-    implementation 'org.openjfx:javafx-fxml:19.0.2.1:win'
+    implementation files("${rootDir}/lib/jfx/javafx.controls.jar")
+    implementation files("${rootDir}/lib/jfx/javafx.fxml.jar")
+    implementation files("${rootDir}/lib/jfx/javafx.graphics.jar")
+
+   // implementation 'org.openjfx:javafx:11.0.2'
+    /*
+    implementation 'org.openjfx:javafx-controls:11.0.2:win'
+    implementation 'org.openjfx:javafx-fxml:11.0.2:win'
+    implementation 'org.openjfx:javafx-graphics:11.0.2:win'
+    */
 
 
 }
-
-
-
 /*
-module MultiplicacionMatrices {
-    requires javafx.controls;
-    requires javafx.fxml;
-    exports proyecto.multiplicacionmatrices.clases;
+run {
+    jvmArgs = [
+            '--module-path',
+            '.\\lib\\jfx\\javafx-sdk-11.0.2\\lib',
+            '--add-modules',
+            'javafx.controls,javafx.fxml'
+    ]
 }
 */
 
+task runStatsTable(type: JavaExec) {
+    main = 'proyecto.multiplicacionmatrices.StatsTable'
+    classpath = sourceSets.main.runtimeClasspath
+    jvmArgs '--module-path', '.\\lib\\jfx\\javafx-sdk-11.0.2\\lib', '--add-modules', 'javafx.controls,javafx.fxml'
+}
+
+tasks.named('runStatsTable') {
+    doFirst {
+        println "Ejecutando StatsTable con opciones de VM personalizadas"
+    }
+}
 
 tasks.named('test') {
     useJUnitPlatform()

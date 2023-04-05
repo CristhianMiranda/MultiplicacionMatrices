@@ -1,21 +1,17 @@
 package proyecto.multiplicacionmatrices;
 
 
-import javafx.stage.Stage;
 import proyecto.multiplicacionmatrices.clases.Algoritmos;
 import proyecto.multiplicacionmatrices.clases.BarChartExample;
 import proyecto.multiplicacionmatrices.clases.Excel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import proyecto.multiplicacionmatrices.clases.StatsTable;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.*;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
-@SpringBootApplication
+
 public class MultiplicacionMatricesApplication extends JFrame {
 
     public static void main(String[] args) {
@@ -28,7 +24,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
 
     public static void calculoTiempoEjecucionMultiplicacionMatrices() {
 
-        int tamano = 1;
+        int tamano = 2 ;
         eliminarArchivo();
 
         for (int i = 1; i <= 12; i++) {
@@ -65,7 +61,13 @@ public class MultiplicacionMatricesApplication extends JFrame {
 
             }
         }
+        try {
+            guardarValoresFinales();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         graficaBarras();
+
 
     }
     /*
@@ -378,6 +380,95 @@ public class MultiplicacionMatricesApplication extends JFrame {
         }
     }
 
+    public static void guardarValoresFinales() throws IOException {
+        List<List<Double>> executionTimesList = new ArrayList<>();
+        List<String> ids = new ArrayList<>();
+        int numFiles = 16;
+
+        // Leer los archivos y extraer los valores y los ids
+        for (int i = 1; i <= numFiles; i++) {
+            String fileName = "assets/datos/execution_times" + i + ".txt";
+            File file = new File(fileName);
+
+            List<Double> executionTimes = new ArrayList<>();
+            BufferedReader br = new BufferedReader(new FileReader(file));
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                double lastValue = Double.parseDouble(values[values.length-2]);
+                executionTimes.add(lastValue);
+            }
+
+            executionTimesList.add(executionTimes);
+
+            // Agregar el id correspondiente
+            if (i == 1) {
+                ids.add("NaivStandard");
+            } else if (i == 2) {
+                ids.add("NaivOnArray");
+            } else if (i == 3) {
+                ids.add("NaivKahan");
+            } else if (i == 4) {
+                ids.add("NaivLoopUnrollingTwo");
+            } else if (i == 5) {
+                ids.add("NaivLoopUnrollingThree");
+            } else if (i == 6) {
+                ids.add("NaivLoopUnrollingFour");
+            } else if (i == 7) {
+                ids.add("WinogradOriginal");
+            } else if (i == 8) {
+                ids.add("WinogradScaled");
+            } else if (i == 9) {
+                ids.add("StrassenNaiv");
+            } else if (i == 10) {
+                ids.add("StrassenWinograd");
+            } else if (i == 11) {
+                ids.add("V1_Sequential block");
+            } else if (i == 12) {
+                ids.add("V1_Parallel Block");
+            } else if (i == 13) {
+                ids.add("V2_Sequential block");
+            } else if (i == 14) {
+                ids.add("V2_Parallel Block");
+            } else if (i == 15) {
+                ids.add("V3_Sequential block");
+            } else {
+                ids.add("V3_Parallel Block");
+            }
+
+            br.close();
+        }
+
+        // Ordenar los valores de menor a mayor y crear los archivos de salida
+        List<Double> sortedValues = new ArrayList<>();
+        FileWriter valuesFileWriter = new FileWriter("assets/datos/execution_times_sorted.txt");
+        FileWriter idsFileWriter = new FileWriter("assets/datos/ids.txt");
+
+        for (int i = 0; i < numFiles; i++) {
+            sortedValues.addAll(executionTimesList.get(i));
+        }
+
+        Collections.sort(sortedValues);
+
+        for (int i = 0; i < sortedValues.size(); i++) {
+            double value = sortedValues.get(i);
+            valuesFileWriter.write(value + ",");
+            int index = -1;
+            for (int j = 0; j < numFiles; j++) {
+                if (executionTimesList.get(j).contains(value)) {
+                    index = j;
+                    break;
+                }
+            }
+            idsFileWriter.write(ids.get(index) + "\n");
+        }
+
+        valuesFileWriter.close();
+        idsFileWriter.close();
+    }
+
+
     public static void acumularValores(long time,String id)
     {
         try {
@@ -409,10 +500,15 @@ public class MultiplicacionMatricesApplication extends JFrame {
     }
 
     public static void eliminarArchivo() {
+        File fileExc = new File("assets/datos/execution_times_sorted.txt");
+        fileExc.delete();
+        File id = new File("assets/datos/ids.txt");
+        id.delete();
         for (int i = 1; i <= 16; i++) {
             File filePromds = new File("assets/promedio/promedios.txt");
             File file = new File("assets/datos/execution_times" + i + ".txt");
             File fileProm = new File("assets/promedio/promedio_times" + i + ".txt");
+
             if (file.exists()) {
                 filePromds.delete();
                 fileProm.delete();

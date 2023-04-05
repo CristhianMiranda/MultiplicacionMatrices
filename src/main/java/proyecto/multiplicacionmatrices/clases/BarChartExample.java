@@ -117,10 +117,10 @@ public class BarChartExample extends JFrame {
         return chart;
     }
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         int[] ids = {1, 2, 3, 4, 5};
         double[] promedios = {20.5, 18.2, 22.3, 25.0, 19.1};
 
         BarChartExample demo = new BarChartExample(ids, promedios);
-    }
+    }*/
 }
