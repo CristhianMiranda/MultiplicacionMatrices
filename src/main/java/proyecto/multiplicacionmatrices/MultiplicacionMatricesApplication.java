@@ -3,6 +3,7 @@ package proyecto.multiplicacionmatrices;
 
 import proyecto.multiplicacionmatrices.clases.Algoritmos;
 import proyecto.multiplicacionmatrices.clases.BarChartExample;
+import proyecto.multiplicacionmatrices.clases.BarChartExampleDos;
 import proyecto.multiplicacionmatrices.clases.Excel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +12,7 @@ import javax.swing.*;
 import java.io.*;
 import java.util.*;
 
-
+@SpringBootApplication
 public class MultiplicacionMatricesApplication extends JFrame {
 
     public static void main(String[] args) {
@@ -24,7 +25,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
 
     public static void calculoTiempoEjecucionMultiplicacionMatrices() {
 
-        int tamano = 2 ;
+        int tamano = 20 ;
         eliminarArchivo();
 
         for (int i = 1; i <= 12; i++) {
@@ -67,6 +68,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
             throw new RuntimeException(e);
         }
         graficaBarras();
+        graficaBarrasOrden();
 
 
     }
@@ -83,6 +85,18 @@ public class MultiplicacionMatricesApplication extends JFrame {
         double[] promedios = readNumbersFromFile("assets/promedio/promedios.txt");
         BarChartExample barChartExample = new BarChartExample(new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16},promedios);
     }
+    private static void graficaBarrasOrden() {
+        //unify();
+        double[] tiempos = readNumbersFromFile("assets/datos/execution_times_sorted.txt");
+        BarChartExampleDos barChartExample = new BarChartExampleDos(readTxtFile("assets/datos/ids.txt"),tiempos);
+    }
+
+  /*
+  private static void graficaBarrasOrden() {
+        double[] tiempos = readNumbersFromFile("assets/datos/execution_times_sorted.txt");
+        BarChartExampleDos barChartExample = new BarChartExampleDos(new JFrame(), readTxtFile("assets/datos/ids.txt"), tiempos);
+    }
+  * */
 
     public static void unify() {
         String folderPath = "assets/promedio/";
@@ -112,6 +126,21 @@ public class MultiplicacionMatricesApplication extends JFrame {
             System.err.println("Error writing file: " + outputFilePath);
             e.printStackTrace();
         }
+    }
+    public static ArrayList<String> readTxtFile(String fileName) {
+        ArrayList<String> data = new ArrayList<>();
+        try {
+            File file = new File(fileName);
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                data.add(line);
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return data;
     }
 
     public static double[] readNumbersFromFile(String filename) {
@@ -154,7 +183,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 Algoritmos.naivStandard(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
                 System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (NaivStandard)");
-                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
+                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) );
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
 
@@ -163,7 +192,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 Algoritmos.naivOnArray(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
                 System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (NaivOnArray)");
-                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
+                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) );
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 3:
@@ -171,7 +200,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 Algoritmos.naivKhan(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
                 System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (NaivKhan)");
-                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
+                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) );
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 4:
@@ -179,7 +208,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 Algoritmos.naivLoopUnrollingTwo(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
                 System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (NaivLoopUnrollingTwo)");
-                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
+                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) );
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 5:
@@ -187,7 +216,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 Algoritmos.naivLoopUnrollingThree(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
                 System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (NaivLoopUnrollingThree)");
-                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
+                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) );
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 6:
@@ -195,7 +224,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 Algoritmos.naivLoopUnrollingFour(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
                 System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (NaivLoopUnrollingFour)");
-                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
+                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) );
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 7:
@@ -203,7 +232,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 Algoritmos.winogradOriginal(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
                 System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (WinogradOriginal)");
-                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
+                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) );
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 8:
@@ -211,7 +240,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 Algoritmos.winogradScaled(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
                 System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (WinogradScaled)");
-                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
+                Excel.escribirExcel(id, caso, size + "", (endTime - startTime));
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 9:
@@ -219,7 +248,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 Algoritmos.strassenNaiv(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
                 System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (StrassenNaiv)");
-                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
+                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) );
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 10:
@@ -227,7 +256,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 Algoritmos.strassenWinograd(matrizA, matrizB, matrizC, size, size, size);
                 endTime = System.nanoTime();
                 System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (StrassenWinograd)");
-                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
+                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) );
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 11:
@@ -235,7 +264,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 Algoritmos.v1_sequentialBlock(matrizA, matrizB, size, bsize);
                 endTime = System.nanoTime();
                 System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (V1_SequentialBlock)");
-                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
+                Excel.escribirExcel(id, caso, size + "", (endTime - startTime));
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 12:
@@ -243,7 +272,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 Algoritmos.v1_parallelBlock(matrizA, matrizB, size, bsize);
                 endTime = System.nanoTime();
                 System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (V1_ParallelBlock)");
-                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
+                Excel.escribirExcel(id, caso, size + "", (endTime - startTime));
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 13:
@@ -251,7 +280,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 Algoritmos.v2_sequentialBlock(matrizA, matrizB, size, bsize);
                 endTime = System.nanoTime();
                 System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (V2_SequentialBlock)");
-                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
+                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) );
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 14:
@@ -259,7 +288,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 Algoritmos.v2_parallelBlock(matrizA, matrizB, size, bsize);
                 endTime = System.nanoTime();
                 System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (V2_ParallelBlock)");
-                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
+                Excel.escribirExcel(id, caso, size + "", (endTime - startTime));
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 15:
@@ -267,7 +296,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 Algoritmos.v3_sequentialBlock(matrizA, matrizB, size, bsize);
                 endTime = System.nanoTime();
                 System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (V3_SequentialBlock)");
-                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
+                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) );
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
             case 16:
@@ -275,7 +304,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
                 Algoritmos.v3_parallelBlock(matrizA, matrizB, size, bsize);
                 endTime = System.nanoTime();
                 System.out.println("Tiempo de respuesta en nanosegundos: " + (endTime - startTime) + " (V3_ParallelBlock)");
-                Excel.escribirExcel(id, caso, size + "", (endTime - startTime) + "");
+                Excel.escribirExcel(id, caso, size + "", (endTime - startTime));
                 acumularValores((endTime - startTime), String.valueOf(id));
                 break;
         }
@@ -396,7 +425,7 @@ public class MultiplicacionMatricesApplication extends JFrame {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
-                double lastValue = Double.parseDouble(values[values.length-2]);
+                double lastValue = Double.parseDouble(values[values.length-1]);
                 executionTimes.add(lastValue);
             }
 

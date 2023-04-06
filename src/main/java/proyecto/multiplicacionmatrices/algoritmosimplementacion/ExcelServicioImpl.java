@@ -2,8 +2,8 @@ package proyecto.multiplicacionmatrices.algoritmosimplementacion;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.*;
 import proyecto.multiplicacionmatrices.servicios.ExcelServicio;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,7 +19,7 @@ public class ExcelServicioImpl implements ExcelServicio {
      @param tiempoRespuesta el nuevo tiempo de respuesta que se desea asignar al caso.
      */
     @Override
-    public void escribirEnHoja(int id,int caso,String tamano,String tiempoRespuesta) {
+    public void escribirEnHoja(int id,int caso,String tamano,double tiempoRespuesta) {
 
         // Cargar el archivo existente de Excel
         String nombreArchivo = "datos.xlsx";
@@ -45,7 +45,7 @@ public class ExcelServicioImpl implements ExcelServicio {
                     // Se encontró el ID buscado en la hoja
                     // Se encontró el ID buscado en la hoja
                     Cell celdaValor1 = fila.createCell(caso*2);
-                    celdaValor1.setCellValue(tamano);
+                    celdaValor1.setCellValue(tamano+"*"+tamano);
                     Cell celdaValor2 = fila.createCell(caso*2+1);
                     celdaValor2.setCellValue(tiempoRespuesta);
                 }
@@ -54,7 +54,10 @@ public class ExcelServicioImpl implements ExcelServicio {
 
             // Guardar los cambios en el archivo
             try (FileOutputStream archivoSalida = new FileOutputStream(nombreArchivo)) {
+                // Actualizar las celdas que dependen de los nuevos datos
+                libro.getCreationHelper().createFormulaEvaluator().evaluateAll();
                 libro.write(archivoSalida);
+                libro.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

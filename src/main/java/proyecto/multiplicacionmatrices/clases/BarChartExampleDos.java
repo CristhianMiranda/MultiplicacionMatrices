@@ -9,18 +9,15 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.ArrayList;
 
 public class BarChartExampleDos extends JFrame {
 
-    private int[] ids;
+    private final ArrayList<String> ids;
     private double[] promedios;
 
-    public BarChartExampleDos(int[] ids, double[] promedios) {
-        super("Diagrama de Barras de Promedio de TE(ns)");
+    public BarChartExampleDos(ArrayList<String> ids, double[] promedios) {
+        super("Diagrama de Barras En orden ascendente de los TE(ns)");
         this.ids = ids;
         this.promedios = promedios;
 
@@ -29,7 +26,6 @@ public class BarChartExampleDos extends JFrame {
 
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(600, 1020));
-
         setContentPane(chartPanel);
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,62 +35,18 @@ public class BarChartExampleDos extends JFrame {
     public CategoryDataset createDataset() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
+        for (String id : ids) {
+
+            System.out.println(id);
+        }
+        for (double promedio : promedios) {
+            System.out.println(promedio);
+        }
         // Agregar los datos a la tabla
-        for (int i = 0; i <= ids.length; i++) {
-            switch (i)
-            {
-                case 0:
-                    dataset.addValue(promedios[i], "Promedios", "NaivStandard");
-                    break;
+        for (int i = 0; i < 16; i++) {
 
-                case 1:
-                    dataset.addValue(promedios[i], "Promedios", "NaivOnArray");
-                    break;
-
-                case 2:
-                    dataset.addValue(promedios[i], "Promedios", "NaivKahan");
-                    break;
-                case 3:
-                    dataset.addValue(promedios[i], "Promedios", "NaivLoopUnrollingTwo");
-                    break;
-                case 4:
-                    dataset.addValue(promedios[i], "Promedios", "NaivLoopUnrollingThree");
-                    break;
-                case 5:
-                    dataset.addValue(promedios[i], "Promedios", "NaivLoopUnrollingFour");
-                    break;
-                case 6:
-                    dataset.addValue(promedios[i], "Promedios", "WinogradOriginal");
-                    break;
-                case 7:
-                    dataset.addValue(promedios[i], "Promedios", "WinogradScaled");
-                    break;
-                case 8:
-                    dataset.addValue(promedios[i], "Promedios", "StrassenNaiv");
-                    break;
-                case 9:
-                    dataset.addValue(promedios[i], "Promedios", "StrassenWinograd");
-                    break;
-                case 10:
-                    dataset.addValue(promedios[i], "Promedios", "V1_Sequential block");
-                    break;
-                case 11:
-                    dataset.addValue(promedios[i], "Promedios", "V1_Parallel Block");
-                    break;
-                case 12:
-                    dataset.addValue(promedios[i], "Promedios", "V2_Sequential block");
-                    break;
-                case 13:
-                    dataset.addValue(promedios[i], "Promedios", "V2_Parallel Block");
-                    break;
-                case 14:
-                    dataset.addValue(promedios[i], "Promedios", "V3_Sequential block");
-                    break;
-                case 15:
-                    dataset.addValue(promedios[i], "Promedios", "V3_Parallel Block");
-                    break;
-
-            }
+            dataset.addValue(promedios[i], "Algoritmos", ids.get(i));
+            //System.out.println(i);
 
         }
 
@@ -103,7 +55,7 @@ public class BarChartExampleDos extends JFrame {
 
     public JFreeChart createChart(CategoryDataset dataset) {
         JFreeChart chart = ChartFactory.createBarChart(
-                "Tiempo promedio de ejecucion (nanosegundos)", // Título del gráfico
+                "Tiempo de ejecucion (nanosegundos) En el caso 12", // Título del gráfico
                 "ID",              // Etiqueta del eje X
                 "TE(ns)",              // Etiqueta del eje Y
                 dataset,              // Datos para el gráfico
@@ -121,11 +73,4 @@ public class BarChartExampleDos extends JFrame {
         return chart;
     }
 
-
-   /* public static void main(String[] args) {
-        int[] ids = {1, 2, 3, 4, 5};
-        double[] promedios = {20.5, 18.2, 22.3, 25.0, 19.1};
-
-        BarChartExample demo = new BarChartExample(ids, promedios);
-    }*/
 }

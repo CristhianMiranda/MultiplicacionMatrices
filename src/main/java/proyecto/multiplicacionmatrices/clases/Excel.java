@@ -4,7 +4,7 @@ import proyecto.multiplicacionmatrices.algoritmosimplementacion.ExcelServicioImp
 import proyecto.multiplicacionmatrices.servicios.ExcelServicio;
 
 public class Excel {
-    public static void escribirExcel(int id,int caso,String tamano,String tiempoRespuesta)
+    public static void escribirExcel(int id,int caso,String tamano,double tiempoRespuesta)
     {
         ExcelServicio excelServicio = new ExcelServicioImpl();
         excelServicio.escribirEnHoja(id,caso,tamano,tiempoRespuesta);

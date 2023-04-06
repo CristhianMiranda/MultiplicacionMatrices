@@ -8,6 +8,7 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class BarChartExample extends JFrame {

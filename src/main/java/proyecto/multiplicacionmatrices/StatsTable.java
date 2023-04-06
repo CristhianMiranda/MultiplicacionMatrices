@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-@SpringBootApplication
+
 public class StatsTable extends Application {
 
     private List<Double> data;
@@ -183,7 +183,7 @@ public class StatsTable extends Application {
 
         System.out.println("Ejecutando principal A");
         MultiplicacionMatricesApplication.main(new String[] {});
-        javafx.application.Application.launch(StatsTable.class, args);
+       // javafx.application.Application.launch(StatsTable.class, args);
 
     }
 
