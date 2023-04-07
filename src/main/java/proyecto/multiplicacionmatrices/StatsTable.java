@@ -51,10 +51,10 @@ public class StatsTable extends Application {
 
             // Creamos una lista observable para los datos de la tabla
             ObservableList<StatRow> stats = FXCollections.observableArrayList(
-                    new StatRow("Media", String.format("%.11f", media)),
-                    new StatRow("Rango", String.format("%.11f", rango)),
-                    new StatRow("Varianza", String.format("%.11f", varianza)),
-                    new StatRow("Desviación estándar", String.format("%.11f", desviacionEstandar))
+                    new StatRow("Media", String.format("%.2f", media)),
+                    new StatRow("Rango", String.format("%.2f", rango)),
+                    new StatRow("Varianza", String.format("%.2f", varianza)),
+                    new StatRow("Desviación estándar", String.format("%.2f", desviacionEstandar))
             );
 
             // Creamos la tabla
@@ -183,7 +183,7 @@ public class StatsTable extends Application {
 
         System.out.println("Ejecutando principal A");
         MultiplicacionMatricesApplication.main(new String[] {});
-       // javafx.application.Application.launch(StatsTable.class, args);
+        javafx.application.Application.launch(StatsTable.class, args);
 
     }
 

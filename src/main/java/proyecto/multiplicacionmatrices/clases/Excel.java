@@ -10,7 +10,7 @@ public class Excel {
         excelServicio.escribirEnHoja(id,caso,tamano,tiempoRespuesta);
     }
 
-    public static void escribirEnHojaEspecifica(String valor,int j)
+    public static void escribirEnHojaEspecifica(double valor,int j)
     {
         ExcelServicio excelServicio = new ExcelServicioImpl();
         excelServicio.escribirEnHojaEspecifica(valor,j);

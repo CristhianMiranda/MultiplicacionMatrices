@@ -50,8 +50,6 @@ public class ExcelServicioImpl implements ExcelServicio {
                     celdaValor2.setCellValue(tiempoRespuesta);
                 }
             }
-
-
             // Guardar los cambios en el archivo
             try (FileOutputStream archivoSalida = new FileOutputStream(nombreArchivo)) {
                 // Actualizar las celdas que dependen de los nuevos datos
@@ -68,7 +66,7 @@ public class ExcelServicioImpl implements ExcelServicio {
     }
 
     @Override
-    public void escribirEnHojaEspecifica(String valor, int j) {
+    public void escribirEnHojaEspecifica(double valor, int j) {
         try (Workbook workbook = WorkbookFactory.create(new FileInputStream("datos.xlsx"))) {
             Sheet sheet = workbook.getSheet("CasosAnalisis");
             Row row = sheet.getRow(5+j);

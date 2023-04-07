@@ -15,5 +15,5 @@ public interface ExcelServicio {
      */
     void escribirEnHoja(int id,int caso,String tamano,double tiempoRespuesta);
 
-    void escribirEnHojaEspecifica(String valor,int j);
+    void escribirEnHojaEspecifica(double valor,int j);
 }
